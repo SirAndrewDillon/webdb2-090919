@@ -1,44 +1,8 @@
-/* --------------------------------- Imports -------------------------------- */
-const knex = require('knex')
-const config = require('../knexfile.js')
+const knex = require("knex");
 
-/* -------- You must select the development object from our knexfile -------- */
-const db = knex(config.development)
+const configOptions = require("../knexfile").development;
 
-module.exports = {
-    find,
-    findById,
-    insert,
-    update,
-    remove,
-  };
-
-/* ------------------------ Functions to perform CRUD ----------------------- */
-function find() {
-  return db('cars');
-}
-
-function findById(id) {
-  return db('cars').where({ id: Number(id) });
-}
-
-function insert(post) {
-  return db('cars')
-    .insert(post)
-    .then(ids => ({ id: ids[0] }));
-}
-
-function update(id, post) {
-  return db('cars')
-    .where('id', Number(id))
-    .update(post);
-}
-
-function remove(id) {
-  return db('cars')
-    .where('id', Number(id))
-    .del();
-}
+module.exports = knex(configOptions);
 
 
 

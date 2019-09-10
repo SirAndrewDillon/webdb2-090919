@@ -1,11 +1,9 @@
-/* ----------------------- Imports the server.js file ----------------------- */
-const server = require('./server.js')
+const server = require("./server.js")
+const PORT = process.env.PORT || 6868;
+require('dotenv').config()
 
-/* ----------------------- This makes the port dynamic ---------------------- */
-const port = process.env.PORT || 6868
 
-/* ---------------- Listens for port 6868 to start the server --------------- */
-server.listen(port, () => {
-	console.log(`\n***_Server Reporting For Duty on port: ${port}_***\n`)
-})
+server.listen(PORT, () => {
+  console.log(`Server reporting for duty on port:- ${PORT}...`);
+});
 
