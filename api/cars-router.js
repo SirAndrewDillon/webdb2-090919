@@ -40,11 +40,40 @@ router.post('/', async (req, res) => {
         })
     }
 }) //Needs Work
+  
 
 
+/* ------------------------------ Edit car data ----------------------------- */
+router.put('/:id', async (req, res) => {
+    try {
+        const cars = await db.update(req.params.id, req.body)
+        post ? res.status(200).json({cars, message: "Car Added"}) :
+        res.status(404).json({message: 'The car with the specified ID does not exist.'});
+
+    } catch (error) {
+        res.status(500).json({ error: 'The car data could not be modified.'})
+    }
+})  // Tested and Working
 
 
+/* ------------------------- Delete a car by its Id ------------------------- */
+router.delete('/:id', async (req, res) => {
+    try {
+        const cars = await db.remove(req.params.id)
 
+        post > 0 ? res.status(201).json(cars) : res.status(404).json({ message: 'The car with the specified ID does not exist'}) 
+    } catch (error) {
+        res.status(500).json({ error: 'The the car you selected could not be removed.' })
+    }
+}) //Tested and Working
 
 
 module.exports = router;
+
+
+
+
+
+
+
+
